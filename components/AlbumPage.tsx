@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Department, CardData } from '../types';
 import Card from './Card';
@@ -14,17 +15,24 @@ const AlbumPage: React.FC<AlbumPageProps> = ({ department, cards, ownedIds, dupl
   const ownedCount = deptCards.filter(c => ownedIds.includes(c.id)).length;
   const progress = Math.round((ownedCount / deptCards.length) * 100);
 
+  const deptIcon = 
+        department === Department.DIRECTION ? '👔' :
+        department === Department.SALES ? '💼' :
+        department === Department.MARKETING ? '🎨' :
+        department === Department.HR ? '🤝' : 
+        department === Department.FINANCE ? '💰' :
+        department === Department.OPERATIONS ? '⚙️' :
+        department === Department.IT ? '💻' :
+        department === Department.LOGISTICS ? '🚚' :
+        '🏢';
+
   return (
     <div className="mb-12 border-b border-white/5 pb-12 last:border-0">
       {/* Department Header */}
       <div className="sticky top-[60px] z-30 bg-brand-dark/95 backdrop-blur py-4 mb-6 border-b border-white/10 flex justify-between items-center px-4 md:px-0">
         <div className="flex items-center gap-4">
             <div className={`w-12 h-12 flex items-center justify-center rounded-full text-xl bg-white/10 border border-white/20 shadow-inner`}>
-                {department === Department.ENGINEERING && '🛠️'}
-                {department === Department.DESIGN && '🎨'}
-                {department === Department.SALES && '💼'}
-                {department === Department.HR && '👥'}
-                {department === Department.EXECUTIVE && '👑'}
+                {deptIcon}
             </div>
             <div>
                 <h2 className="text-2xl font-header font-bold text-white uppercase">{department}</h2>

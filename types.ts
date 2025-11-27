@@ -1,17 +1,20 @@
 
 export enum Department {
-  ENGINEERING = 'Engineering',
-  DESIGN = 'Design',
-  SALES = 'Sales',
-  HR = 'Human Resources',
-  EXECUTIVE = 'Executive'
+  DIRECTION = 'Dirección',
+  SALES = 'Ventas',
+  MARKETING = 'Marketing',
+  HR = 'Recursos Humanos',
+  FINANCE = 'Finanzas',
+  OPERATIONS = 'Operaciones',
+  IT = 'Sistemas',
+  LOGISTICS = 'Logística'
 }
 
 export enum Rarity {
-  COMMON = 'Common',
-  RARE = 'Rare',
-  EPIC = 'Epic',
-  LEGENDARY = 'Legendary'
+  COMMON = 'Común',
+  RARE = 'Rara',
+  EPIC = 'Épica',
+  LEGENDARY = 'Legendaria'
 }
 
 export interface CardData {
@@ -31,6 +34,12 @@ export interface Achievement {
   description: string;
   icon: string;
   rewardPacks: number;
+}
+
+export interface GlobalAssets {
+  logoUrl?: string;
+  coverUrl?: string;
+  backgroundUrl?: string;
 }
 
 export interface UserState {

@@ -4,57 +4,78 @@ import { Achievement, UserState, CardData, Department, Rarity } from '../types';
 export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'first_step',
-    title: 'Rookie Collector',
-    description: 'Open your first pack of cards.',
-    icon: '🧢',
+    title: 'Bienvenido a LICON',
+    description: 'Abre tu primer sobre de tarjetas.',
+    icon: '👋',
     rewardPacks: 1
   },
   {
-    id: 'engineer_complete',
-    title: 'Engineering Master',
-    description: 'Collect all Engineering department cards.',
-    icon: '🛠️',
-    rewardPacks: 2
-  },
-  {
-    id: 'design_complete',
-    title: 'Design Guru',
-    description: 'Collect all Design department cards.',
-    icon: '🎨',
+    id: 'direction_complete',
+    title: 'Líder Nato',
+    description: 'Colecciona todas las tarjetas de Dirección.',
+    icon: '👔',
     rewardPacks: 2
   },
   {
     id: 'sales_complete',
-    title: 'Top Closer',
-    description: 'Collect all Sales department cards.',
+    title: 'Lobo de Ventas',
+    description: 'Colecciona todas las tarjetas de Ventas.',
     icon: '💼',
     rewardPacks: 2
   },
   {
-    id: 'hr_complete',
-    title: 'People Person',
-    description: 'Collect all HR department cards.',
-    icon: '👥',
+    id: 'marketing_complete',
+    title: 'Genio Creativo',
+    description: 'Colecciona todas las tarjetas de Marketing.',
+    icon: '🎨',
     rewardPacks: 2
   },
   {
-    id: 'executive_complete',
-    title: 'Board Member',
-    description: 'Collect all Executive department cards.',
-    icon: '👑',
-    rewardPacks: 3
+    id: 'hr_complete',
+    title: 'Gestor de Talento',
+    description: 'Colecciona todas las tarjetas de RR.HH.',
+    icon: '🤝',
+    rewardPacks: 2
+  },
+  {
+    id: 'finance_complete',
+    title: 'Maestro de los Números',
+    description: 'Colecciona todas las tarjetas de Finanzas.',
+    icon: '💰',
+    rewardPacks: 2
+  },
+  {
+    id: 'ops_complete',
+    title: 'Ingeniero de Procesos',
+    description: 'Colecciona todas las tarjetas de Operaciones.',
+    icon: '⚙️',
+    rewardPacks: 2
+  },
+  {
+    id: 'it_complete',
+    title: 'Hacker Ético',
+    description: 'Colecciona todas las tarjetas de Sistemas.',
+    icon: '💻',
+    rewardPacks: 2
+  },
+  {
+    id: 'logistics_complete',
+    title: 'Estratega de Rutas',
+    description: 'Colecciona todas las tarjetas de Logística.',
+    icon: '🚚',
+    rewardPacks: 2
   },
   {
     id: 'legend_hunter',
-    title: 'Legend Hunter',
-    description: 'Find a Legendary rarity card.',
+    title: 'Leyenda Viviente',
+    description: 'Encuentra una carta de rareza Legendaria.',
     icon: '✨',
-    rewardPacks: 2
+    rewardPacks: 3
   },
   {
     id: 'halfway_there',
-    title: 'Halfway There',
-    description: 'Collect 50% of the unique cards.',
+    title: 'Mitad del Camino',
+    description: 'Colecciona el 50% de las cartas únicas.',
     icon: '📈',
     rewardPacks: 1
   }
@@ -73,20 +94,29 @@ export const checkAchievements = (user: UserState, roster: CardData[]): string[]
       case 'first_step':
         unlocked = user.collection.length > 0;
         break;
-      case 'engineer_complete':
-        unlocked = checkDeptComplete(Department.ENGINEERING, roster, ownedSet);
-        break;
-      case 'design_complete':
-        unlocked = checkDeptComplete(Department.DESIGN, roster, ownedSet);
+      case 'direction_complete':
+        unlocked = checkDeptComplete(Department.DIRECTION, roster, ownedSet);
         break;
       case 'sales_complete':
         unlocked = checkDeptComplete(Department.SALES, roster, ownedSet);
         break;
+      case 'marketing_complete':
+        unlocked = checkDeptComplete(Department.MARKETING, roster, ownedSet);
+        break;
       case 'hr_complete':
         unlocked = checkDeptComplete(Department.HR, roster, ownedSet);
         break;
-      case 'executive_complete':
-        unlocked = checkDeptComplete(Department.EXECUTIVE, roster, ownedSet);
+      case 'finance_complete':
+        unlocked = checkDeptComplete(Department.FINANCE, roster, ownedSet);
+        break;
+      case 'ops_complete':
+        unlocked = checkDeptComplete(Department.OPERATIONS, roster, ownedSet);
+        break;
+      case 'it_complete':
+        unlocked = checkDeptComplete(Department.IT, roster, ownedSet);
+        break;
+      case 'logistics_complete':
+        unlocked = checkDeptComplete(Department.LOGISTICS, roster, ownedSet);
         break;
       case 'legend_hunter':
         unlocked = roster.some(c => c.rarity === Rarity.LEGENDARY && ownedSet.has(c.id));

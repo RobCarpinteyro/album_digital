@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { CardData, Department } from '../types';
 import Card from './Card';
@@ -11,9 +12,9 @@ interface TradeCenterProps {
 
 // Mock data for "Global Market"
 const MOCK_MARKET_REQUESTS = [
-    { user: 'Sarah_Design_Lead', needs: Department.ENGINEERING, offers: Department.DESIGN },
-    { user: 'MikeFromSales', needs: Department.SALES, offers: Department.HR },
-    { user: 'BigBoss', needs: Department.EXECUTIVE, offers: Department.ENGINEERING },
+    { user: 'Sara_Moda', needs: Department.MARKETING, offers: Department.SALES },
+    { user: 'Mike_Gamer', needs: Department.IT, offers: Department.OPERATIONS },
+    { user: 'Chef_Juan', needs: Department.FINANCE, offers: Department.HR },
 ];
 
 const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicates, onTrade }) => {
@@ -36,7 +37,7 @@ const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicate
     // Logic: Trade 3 duplicates for 1 random missing card
     const missingCards = roster.filter(c => !collection.includes(c.id));
     if (missingCards.length === 0) {
-        alert("You already own all cards!");
+        alert("¡Ya tienes todas las cartas!");
         return;
     }
     
@@ -45,25 +46,25 @@ const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicate
     const randomNew = missingCards[Math.floor(Math.random() * missingCards.length)];
     onTrade(selectedDupes, randomNew.id);
     setSelectedDupes([]);
-    alert(`Trade Successful! You received ${randomNew.name}.`);
+    alert(`¡Intercambio Exitoso! Recibiste a ${randomNew.name}.`);
   };
 
   return (
     <div className="max-w-7xl mx-auto p-6 min-h-screen">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-header font-bold text-white">Trade Center</h2>
+        <h2 className="text-3xl font-header font-bold text-white">Centro de Intercambio</h2>
         <div className="flex gap-2 bg-white/10 p-1 rounded-lg">
             <button 
                 onClick={() => setView('duplicates')}
                 className={`px-4 py-2 rounded-md text-sm font-bold uppercase transition-colors ${view === 'duplicates' ? 'bg-brand-accent text-white' : 'text-white/50 hover:text-white'}`}
             >
-                My Duplicates
+                Mis Repetidas
             </button>
             <button 
                 onClick={() => setView('market')}
                 className={`px-4 py-2 rounded-md text-sm font-bold uppercase transition-colors ${view === 'market' ? 'bg-brand-accent text-white' : 'text-white/50 hover:text-white'}`}
             >
-                Global Market
+                Mercado Global
             </button>
         </div>
       </div>
@@ -75,7 +76,7 @@ const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicate
                 {duplicateCards.length === 0 ? (
                     <div className="text-center py-20 bg-white/5 rounded-xl border-2 border-dashed border-white/10">
                         <div className="text-4xl mb-4">🕸️</div>
-                        <p className="text-white/50">No duplicates available to trade yet.</p>
+                        <p className="text-white/50">No tienes repetidas para cambiar aún.</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -100,9 +101,9 @@ const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicate
 
             {/* Action Panel */}
             <div className="w-full lg:w-80 bg-brand-purple p-6 rounded-xl border border-white/10 h-fit sticky top-24">
-                <h3 className="text-xl font-header font-bold text-white mb-4">Recycle Bin</h3>
+                <h3 className="text-xl font-header font-bold text-white mb-4">Reciclaje</h3>
                 <p className="text-sm text-white/60 mb-6">
-                    Select <span className="text-brand-accent font-bold">3 duplicates</span> to trade for <span className="text-green-400 font-bold">1 guaranteed new card</span>.
+                    Selecciona <span className="text-brand-accent font-bold">3 repetidas</span> para cambiar por <span className="text-green-400 font-bold">1 carta nueva</span> garantizada.
                 </p>
 
                 <div className="flex justify-center gap-2 mb-8">
@@ -118,7 +119,7 @@ const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicate
                     disabled={selectedDupes.length !== 3}
                     className="w-full py-3 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold rounded shadow-lg transition-colors uppercase tracking-wider"
                 >
-                    Trade In
+                    Intercambiar
                 </button>
             </div>
         </div>
@@ -134,22 +135,22 @@ const TradeCenter: React.FC<TradeCenterProps> = ({ roster, collection, duplicate
                         </div>
                         <div>
                             <div className="font-bold text-white">{req.user}</div>
-                            <div className="text-xs text-white/40">Active 5m ago</div>
+                            <div className="text-xs text-white/40">Activo hace 5m</div>
                         </div>
                     </div>
                     <div className="flex items-center justify-between bg-black/20 p-3 rounded">
                         <div className="text-center">
-                            <div className="text-xs text-white/40 uppercase">Offering</div>
-                            <div className="text-sm font-bold text-green-400">{req.offers} Card</div>
+                            <div className="text-xs text-white/40 uppercase">Ofrece</div>
+                            <div className="text-sm font-bold text-green-400">{req.offers}</div>
                         </div>
                         <div className="text-gray-500">⇄</div>
                         <div className="text-center">
-                            <div className="text-xs text-white/40 uppercase">Seeking</div>
-                            <div className="text-sm font-bold text-brand-accent">{req.needs} Card</div>
+                            <div className="text-xs text-white/40 uppercase">Busca</div>
+                            <div className="text-sm font-bold text-brand-accent">{req.needs}</div>
                         </div>
                     </div>
                     <button className="w-full py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-bold rounded transition-colors">
-                        Propose Trade
+                        Proponer Cambio
                     </button>
                 </div>
             ))}
